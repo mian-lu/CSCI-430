@@ -32,7 +32,7 @@ while True:
 				try:
 					file = open("/tmp"+filename, "r")
 					print >> sys.stderr, 'read success! sending data back to the client'
-					connection.sendall(file.read())
+					connection.sendall("HTTP/1.1 200 OK  \n"+file.read())
 				except IOError:
 					print("read file failed! sending error message to client!")
 					connection.sendall("cannot open \"%s\"! please check file path before sending!" % filename)
