@@ -1,0 +1,71 @@
+========================================================================================================================
+Below are answers to Homework 1 questions.
+
+Name: Mian Lu
+Email: mianlu@usc.edu
+USCID: 3249493677
+DeterLab Username: usc430bf
+
+========================================================================================================================
+
+Task 1 - Treasure Hunt
+intro.MianLuExp1.USC430.isi.deterlab.net
+4.The original locations and titles for 5 images are:
+	/var/log/136intro-3.jpg (3-Dimension)
+	/etc/wuer136intro-4.JPG (The Fly)
+	/.hidden/asdf136Intro-5kqlw.jpeg (2001 a space odyssey)
+	/dev/136intro-2jjaj.JPEG (Godzilla)
+	/usr/share/pixmaps/xbzf136INTRO-1.jpg (Forbidden Planet)
+
+========================================================================================================================
+
+Task 2 - Information Hunt
+1./var contains all the OS's runtime "variables" that might change values during the running of OS.
+2./dev means "device". Contains files that control access to peripheral devices such as floppy/hard disks & USB drives.
+3.See diskfree.txt
+4.Vendor ID: 
+	usc430bf@intro:/$ cat /proc/cpuinfo | grep vendor | uniq
+	vendor_id       : GenuineIntel
+	
+========================================================================================================================
+
+Task 3 - Write a Simple Client and a Server
+Please see code submitted.
+
+IMPORTANT NOTE!!!!
+1.	My client.py, when called from command line, expects a command line argument "server". It should be run like this:
+		$ python client.py server
+	This is because my server node name is simply "server".
+2.	My client.py asks server to send back the file "/filename.html". If this file is absent on server's "/tmp" folder,
+	i.e. on server, the path "/tmp/filename.html" does NOT exist, then client will receive error message that is sent
+	from the server saying something like this: "/filename.html does not exist on server end!"
+	Therefore, in order to successfully test my program, "/tmp/filename.html" must first be manually created!
+	Whatever content in "filename.html" is fine. However please note that my client only reads the first 1024 chars from
+	it.
+
+========================================================================================================================
+
+Additional notes:
+
+Below is the .ns file that I use. (Copied from Piazza)
+-------------------
+# This is a simple ns script. Comments start with #.
+set ns [new Simulator]                  
+source tb_compat.tcl
+
+set client [$ns node]
+set server [$ns node]
+
+set link0 [$ns duplex-link $client $server 100Mb 0ms DropTail]
+
+# Set the OS on a couple.
+tb-set-node-os $client Ubuntu-STD
+tb-set-node-os $server Ubuntu-STD
+
+$ns rtproto Static
+
+# Go!
+$ns run                                 
+-------------------
+
+Thank you!
